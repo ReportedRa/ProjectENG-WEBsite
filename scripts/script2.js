@@ -1,9 +1,10 @@
+let cardsNode = document.querySelector('#cards');
 let cards1Node = document.querySelector('#cards_block_1');
 let cards2Node = document.querySelector('#cards_block_2');
 let fruitsButton = document.querySelector('#fruits');
 let vegetablesButton = document.querySelector('#vegetables');
 let label = document.querySelector('#label');
-let idCategoryJS = 'fruits';
+let idCategoryJS;
 let idCard;
 let qID;
 
@@ -60,6 +61,8 @@ let Cards = [
     }
 ];
 
+viewCards();
+
 fruitsButton.addEventListener('click', function(event) {
     label.innerHTML = 'Фрукты';
     idCategoryJS = event.currentTarget.getAttribute("id");
@@ -69,8 +72,6 @@ vegetablesButton.addEventListener('click', function(event) {
     idCategoryJS = event.currentTarget.getAttribute("id");
 });
 
-viewCards('fruits');
-
 fruitsButton.addEventListener('click', function() {
     viewCards(idCategoryJS);
 });
@@ -79,7 +80,9 @@ vegetablesButton.addEventListener('click', function() {
     viewCards(idCategoryJS);
 });
 
-function viewCards(idCategoryJS) {
+
+
+function viewCards(idCategoryJS = 'fruits') {
     if (idCategoryJS == 'fruits') {
         cards1Node.innerHTML = '';
         cards2Node.innerHTML = '';
@@ -88,8 +91,8 @@ function viewCards(idCategoryJS) {
             count++;
             if (count > 4)
                 cards2Node.insertAdjacentHTML('beforeend', getCloseTemplate(i, idCategoryJS));
-            else
-                cards1Node.insertAdjacentHTML('beforeend', getCloseTemplate(i, idCategoryJS));
+            else 
+                cards1Node.insertAdjacentHTML('beforeend', getCloseTemplate(i, idCategoryJS));  
     };
     }
     else if (idCategoryJS == 'vegetables') {
